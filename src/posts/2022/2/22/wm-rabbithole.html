@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {replace-header}
+        <title>The window manager rabbithole</title>
+    </head>
+
+    <body>
+        {replace-nav}
+        <div class="content">
+            <h2>Customizing a serializable desktop</h2>
+            <hr />
+            <p>
+                Everyone's taste in desktop environment is influenced by how
+                they use it, and I'm no exception. In my case, I exchanged a
+                series of small annoyances outside my control for larger ones
+                within my control, à la
+                <a href="https://xkcd.com/1319/"> xkcd 1319</a>.
+            </p>
+            <p>
+                The seeds of this project were sown mostly in my "nuke and pave"
+                linux phase, where I limped my way through learning linux basics
+                with help from the
+                <a href="https://wiki.archlinux.org/">arch wiki</a>, and when
+                that failed, via reinstallation.
+            </p>
+            <p>
+                The frequent installation / setup necessary whenever I
+                accidentally deleted something in <code>/var</code> while trying
+                to free disk space (occasional), or broke my python installation
+                (often), or somehow misconfigured pulse audio (seemingly
+                constant) led me to be particularly fond of desktop environments
+                (or window managers) that were:
+            </p>
+            <ul>
+                <li>Lightweight</li>
+                <li>Configurable via dotfiles (plaintext)</li>
+                <li>Relatively cross-device compatible (laptop, desktop)</li>
+                <li>Fun to experiment with</li>
+            </ul>
+            <p>
+                Given that my I also need to stare at computer screen for a good
+                chunk of the day by virtue of employment or education, I
+                wouldn't mind my environment also being:
+            </p>
+            <ul>
+                <li>Pretty</li>
+                <li>Themeable</li>
+            </ul>
+            <p>
+                Finally, because I end up coding a good bit of the day on these
+                devices, I didn't want to be fighting with the environment. This
+                meant (at least partially) controllable via vim keybindings, and
+                relatively configurable out of the box. On a sliding scale of
+                "fully packaged solution" like
+                <a href="https://www.gnome.org/">GNOME</a>, and "configured via
+                editing source code", like
+                <a href="https://dwm.suckless.org/">dwm</a>, I settled closer to
+                the middle with <a href="https://i3wm.org/">i3wm.</a> Well,
+                technically <a href="https://swaywm.org/">swaywm</a>, but more
+                on that later. I want a default config, I want to download it
+                from the arch core repos, and I don't particularly want to
+                compile it.
+            </p>
+            <p>
+                Fortunately, there're quite a few folks out there with their own
+                masochistic desktop setup projects, a few of which hang out at
+                the
+                <a href="https://www.reddit.com/r/unixporn/">/r/unixporn</a>
+                subreddit (SFW). This gave me a good change to explore what was
+                out there; there're tons of interesting ideas to read up on.
+                Color pallette generation from backgrounds, dynamic wallpaper
+                updates depending on time of day, weather, etc. Moving anything
+                and everything into the terminal, wobbly and flame window
+                effects, and anime catgirls galore. I think I learned a majority
+                of my CSS from trying to wrangle
+                <a href="https://polybar.github.io/">polybar</a> configs. A few
+                projects in particular stood out as interesting though:
+            </p>
+            <ul>
+                <li>
+                    <a href="https://github.com/dylanaraps/pywal">Pywal</a>, to
+                    programmatically generate color pallettes from images
+                </li>
+                <li>
+                    <a href="https://polybar.github.io/">Polybar</a>, for being
+                    a status bar
+                </li>
+                <li>
+                    <a href="https://github.com/davatorium/rofi">Rofi</a>, for
+                    program launching, window switching, etc
+                </li>
+                <li>
+                    <a href="https://github.com/junegunn/fzf">Fzf</a>, for all
+                    sorts of stuff
+                </li>
+                <li>
+                    <a href="https://www.gnu.org/software/stow/">GNU stow</a>,
+                    for copying dotfiles around
+                </li>
+            </ul>
+            <p>
+                Initially, I decided to try to marry all of these requirements
+                and tools in an unholy matrimony and it ended up being a mess
+                that worked because I loved it and tweaked it constantly. For
+                the most part, it was just a git repo where dotfiles were
+                templated with colors generated by pywal, then symlinked into my
+                home repo.
+            </p>
+            <p>
+                It was around the year and a half mark of running that system
+                that a few events conspired to have me revisit the setup and
+                create something a bit more robust. The first was grad school; I
+                just didn't really have time to tweak my configuration
+                constantly and I needed something that Just Worked
+                <sup>TM</sup>, but that wasn't too drastic a departure from what
+                I was used to. The second was that Valve
+                <a
+                    href="https://www.ign.com/articles/steam-deck-valve-announces-handheld-gaming-pc-2021-release"
+                    >announced the steam deck</a
+                >, which gave me a lot more confidence in how they'd throw their
+                weight behind their project project in linux gaming in general &
+                abandon my beloved (but very finnicky
+                <a
+                    href="https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF"
+                    >arch VFIO setup</a
+                >).
+            </p>
+            <p>
+                So, I sold my Nvidia GPU since the drivers on linux were a pain
+                to work with anyways, snagged a different AMD one, and migrated
+                to swaywm, where the
+                <a href="https://wayland.freedesktop.org/">wayland</a> situation
+                was surprisingly cushy.
+            </p>
+            <p>
+                I built around the wayland equivalents of polybar / rofi,
+                stopped using symlinks, and stopped using pywal entirely, since
+                I found the pallettes it was making to be lacking a bit in
+                contrast (it was around then that I also figured out I needed
+                glasses).
+            </p>
+            <p>
+                I dabbled a bit in exploring how to programmatically generate
+                colors with some of my own code, only to bail on the idea
+                because mathematical expression of color space & contrast is a
+                bit more than I was ready to bite off for a desktop environment
+                / window manager project.
+            </p>
+            <p>
+                I ultimately settled on a system somewhat similar to the
+                original, characterized by a git repo with template configs that
+                are copied into the <code>/home/kwkaiser</code> directory, where
+                colors are subsituted from a pallette (instead of generated from
+                an image). This ended up being a good call, I think, because
+                there're a lot of vim color pallettes that people with better
+                eyeballs than mine have come up with, and it's generally easy to
+                scrape the first 16 colors from them. Finally, I wrote some need
+                TUI tools to display background, font, and pallette selection.
+                That's pretty much everything I consistently theme for my system
+                day to day.
+            </p>
+            <p>
+                That's the gist of it though. The code is all available on my
+                <a href="https://github.com/kwkaiser/desktop-utils/tree/desktop"
+                    >github</a
+                >. I have this git trackable, easily tweaked, easy to experiment
+                upon, easy to deploy, and simple to branch or extend desktop
+                environment setup that is surprisingly stable. I can finally
+                claim that I can go from an arch boot iso to an encrypted linux
+                installation with my "normal working environment" in < 15
+                minutes. Would I want to support this sort of thing for someone
+                else? Probably not, but it was a blast to play around with to
+                learn stuff like color theory, CSS, compositors, window
+                managers, bash scripting, etc. It's already proven itself
+                relatively useful after I've broken my arch install & needed to
+                do the whole setup again. It happens less frequently now, but I
+                suppose old habits die hard.
+            </p>
+        </div>
+    </body>
+</html>

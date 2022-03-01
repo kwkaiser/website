@@ -6,5 +6,5 @@ services:
         ports:
             - 80:80
         volumes:
-            - ./src:/usr/share/nginx/src
+            - ./build:/usr/share/nginx/src
             - ./conf/kwkaiser.io.conf:/etc/nginx/conf.d/default.conf

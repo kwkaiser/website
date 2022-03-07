@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+/* Colors */
+:root {
+    --light-red: #bf616a;
+}
+
 /* Animation */
 @keyframes navigation_hover {
     from {
@@ -26,21 +31,21 @@ body {
 }
 
 .content a {
-    color: #bf616a;
+    color: var(--light-red);
 }
 
 .nav li a,
-.content li a {
+.link-list li a {
     color: black;
 }
 
 .nav li a:hover,
-.content li a:hover {
+.link-list li a:hover {
     animation: navigation_hover 0.7s forwards;
 }
 
-.research li a {
-    color: #bf616a !important;
+.anchor-link {
+    color: black !important;
     animation: none !important;
 }
 

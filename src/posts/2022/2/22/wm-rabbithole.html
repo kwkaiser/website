@@ -8,174 +8,186 @@
     <body>
         {replace-nav}
         <div class="content">
-            <h2>Customizing a serializable desktop</h2>
+            <h2>Falling down the window manager rabbithole</h2>
             <hr />
+            <a href="#the-beginning"
+                ><h3 class="anchor-link">The beginning</h3></a
+            >
             <p>
-                Everyone's taste in desktop environment is influenced by how
-                they use it, and I'm no exception. In my case, I exchanged a
-                series of small annoyances outside my control for larger ones
-                within my control, à la
-                <a href="https://xkcd.com/1319/"> xkcd 1319</a>.
+                Desktop linux is, for all its quirks, my most comfortable
+                development environment. Everything is configurable to my exact
+                preference, even when those preferences lead to instability or
+                even unusability, as was often the case when I was familiarizing
+                myself with the operating system & its associated ecosystem.
             </p>
             <p>
-                The seeds of this project were sown mostly in my "nuke and pave"
-                linux phase, where I limped my way through learning linux basics
-                with help from the
-                <a href="https://wiki.archlinux.org/">arch wiki</a>, and when
-                that failed, via reinstallation.
-            </p>
-            <p>
-                The frequent installation / setup necessary whenever I
-                accidentally deleted something in <code>/var</code> while trying
-                to free disk space (occasional), or broke my python installation
-                (often), or somehow misconfigured pulse audio (seemingly
-                constant) led me to be particularly fond of desktop environments
-                (or window managers) that were:
+                I think my "nuke and pave" linux phase, where I was learning,
+                breaking, and constantly reinstalling, was in no small part
+                influential on the types of tools I liked to use. Tools that
+                were:
             </p>
             <ul>
-                <li>Lightweight</li>
-                <li>Configurable via dotfiles (plaintext)</li>
-                <li>Relatively cross-device compatible (laptop, desktop)</li>
-                <li>Fun to experiment with</li>
+                <li>Light</li>
+                <li>Easy to install</li>
+                <li>Configurable via plaintext dotfiles</li>
             </ul>
             <p>
-                Given that my I also need to stare at computer screen for a good
-                chunk of the day by virtue of employment or education, I
-                wouldn't mind my environment also being:
+                Plaintext configurations deserve their own recognition, but
+                really I'm just fond of any tool that lets me relegate its
+                configuration to an independent, homogeneous, version trackable
+                file I can shove into a git repo with all the other configs.
+            </p>
+            <p>
+                So right off the bat, that renders the two largest linux desktop
+                environment projects,
+                <a href="https://www.gnome.org/">GNOME</a> and
+                <a href="https://kde.org/plasma-desktop/">KDE plasma</a> largely
+                off the table. The same is true for a lot of the smaller desktop
+                environments as well.
+            </p>
+            <p>
+                That leaves
+                <a href="https://en.wikipedia.org/wiki/Window_manager"
+                    >window managers</a
+                >, the desktop environment's scrappier and less opinionated
+                relative. Generally without a default application suite and only
+                occasionally
+                <a
+                    href="https://en.wikipedia.org/wiki/Compositing_window_manager"
+                    >composited</a
+                >, they offer a much more skeletal default experience that
+                requires a certain degree of wrenching on to make enjoyable, but
+                ultimately provides more flexibility to focus on the parts of
+                your desktop experience you feel matter. There are a
+                <a
+                    href="https://en.wikipedia.org/wiki/Window_manager#Desktop_environments_and_window_managers_based_on_X11_or_Wayland"
+                    >lot</a
+                >
+                of window managers to choose from, but a loose categorization
+                can be built based on some preferences you might have if you're
+                the type of person to stray from the beaten path and install one
+                of these things.
+            </p>
+            <p>
+                If you like tiling WMs or have an affinity for vim keybindings,
+                you may find yourself at home amongst the tiling WMs like
+                <a href="https://awesomewm.org/">awesome</a>,
+                <a href="https://i3wm.org/">i3wm</a>, or
+                <a href="https://dwm.suckless.org/">dwm</a>. If you like the
+                stackable window managers (like those found when using Windows
+                or OSX), you might like
+                <a href="http://openbox.org/wiki/Main_Page">openbox.</a>
+            </p>
+            <p>
+                The other main difference between them that you might care about
+                has to do with flexibility. On a sliding scale of "configured
+                via editing source code" like the
+                <a href="https://suckless.org/philosophy/">suckless</a> dwm and
+                "fully packaged solution" like a desktop environment, I found
+                myself somewhere in the middle.
+            </p>
+            <p>
+                I want a default configuration, I'm not invested in compiling
+                it, and I'd like my configurations to be independent, but I also
+                want to choose all of my own software. So, ultimately I settled
+                on i3wm. Well, technically
+                <a href="https://swaywm.org/">swaywm</a> after migrating to
+                <a href="https://wayland.freedesktop.org/">wayland</a>.
+            </p>
+            <a href="#the-itch"><h3 class="anchor-link">The itch</h3></a>
+            <p>
+                So eventually you've got your window manager setup with some
+                keybindings you like and managed to get the holy trinity of:
             </p>
             <ul>
-                <li>Pretty</li>
-                <li>Themeable</li>
+                <li>
+                    <a href="https://wiki.archlinux.org/title/Rofi"
+                        >A launcher / window switcher</a
+                    >
+                </li>
+                <li>
+                    <a href="https://github.com/polybar/polybar"
+                        >A status bar of some sort</a
+                    >
+                </li>
+                <li>
+                    <a href="https://wiki.archlinux.org/title/Feh"
+                        >Something to set backgrounds</a
+                    >
+                </li>
             </ul>
             <p>
-                Finally, because I end up coding a good bit of the day on these
-                devices, I didn't want to be fighting with the environment. This
-                meant (at least partially) controllable via vim keybindings, and
-                relatively configurable out of the box. On a sliding scale of
-                "fully packaged solution" like
-                <a href="https://www.gnome.org/">GNOME</a>, and "configured via
-                editing source code", like
-                <a href="https://dwm.suckless.org/">dwm</a>, I settled closer to
-                the middle with <a href="https://i3wm.org/">i3wm.</a> Well,
-                technically <a href="https://swaywm.org/">swaywm</a>, but more
-                on that later. I want a default config, I want to download it
-                from the arch core repos, and I don't particularly want to
-                compile it.
-            </p>
-            <p>
-                Fortunately, there're quite a few folks out there with their own
-                masochistic desktop setup projects, a few of which hang out at
-                the
+                Maybe you throw in a compositor with some cool wobbly window
+                effects & some neat GTK theme you found on the arch wiki. You go
+                to share your setup somewhere like then
                 <a href="https://www.reddit.com/r/unixporn/">/r/unixporn</a>
-                subreddit (SFW). This gave me a good change to explore what was
-                out there; there're tons of interesting ideas to read up on.
-                Color pallette generation from backgrounds, dynamic wallpaper
-                updates depending on time of day, weather, etc. Moving anything
-                and everything into the terminal, wobbly and flame window
-                effects, and anime catgirls galore. I think I learned a majority
-                of my CSS from trying to wrangle
-                <a href="https://polybar.github.io/">polybar</a> configs. A few
-                projects in particular stood out as interesting though:
+                subreddit (SFW) only to realize that you've barely scratched the
+                surface when you see the absolutely crazy configurations there.
+                Tree graphs generated from running linux processes, backgrounds
+                that change with the sunset or what's trending on twitter, color
+                pallettes and themes generated from images, and for some reason
+                anime catgirls galore.
+            </p>
+            <p>
+                The next step the rabbithole is to constantly tweak your
+                configuration, see something cool that someone else did, and get
+                the urge to eventually integrate it into your own setup. Maybe
+                it's having smart LEDs scripted to change their color to
+                whatever RGB value is most expressed on your screen, or
+                replacing all your configuration files with symlinks, or
+                something else entirely. My personal favorite way to take
+                advantage of the plaintext configurations of everything was via
+                <a href="https://github.com/dylanaraps/pywal">pywal</a>, to
+                match my system theme to my background. However, I found a lot
+                of the pallettes to be lacking enough contrast to code with
+                properly (perhaps not unrelated; I first learned I needed
+                glasses around then), so I moved to using pre-defined color
+                pallettes.
+            </p>
+            <a href="#something-breaks"
+                ><h3 class="anchor-link">Something breaks</h3></a
+            >
+            <p>
+                Eventually, you've created an absolute mess of tools tied
+                together with baling wire, duct tape, and your constant
+                attention. After a package update, or when you get a bit too
+                ambitious with your
+                <a href="https://xkcd.com/963/">xorg configuration</a> or nvidia
+                drivers, the house of cards inevitably comes crashing down.
+            </p>
+            <p>
+                This isn't all bad though, as long as you can stretch your
+                baling wire to last until your end of term project is finished,
+                because half the fun is tweaking the setup in the first place.
+                Eventually, your new focus is making the new environment easily
+                deployable & configurable with less hassle.
+            </p>
+            <a href="#end-of-the-rabbithole"
+                ><h3 class="anchor-link">End of the rabbithole</h3></a
+            >
+            <p>
+                For many, I think it's possible to sink endless quantities of
+                time into this sort of project, until you have animations
+                playing during your bootloader and fibonacci-sequenced window
+                division with your tiling WM, but I eventually settled on a
+                setup focused on deployability and configuring just three things
+                day to day:
             </p>
             <ul>
-                <li>
-                    <a href="https://github.com/dylanaraps/pywal">Pywal</a>, to
-                    programmatically generate color pallettes from images
-                </li>
-                <li>
-                    <a href="https://polybar.github.io/">Polybar</a>, for being
-                    a status bar
-                </li>
-                <li>
-                    <a href="https://github.com/davatorium/rofi">Rofi</a>, for
-                    program launching, window switching, etc
-                </li>
-                <li>
-                    <a href="https://github.com/junegunn/fzf">Fzf</a>, for all
-                    sorts of stuff
-                </li>
-                <li>
-                    <a href="https://www.gnu.org/software/stow/">GNU stow</a>,
-                    for copying dotfiles around
-                </li>
+                <li>Backgrounds</li>
+                <li>Fonts</li>
+                <li>Color pallettes</li>
             </ul>
             <p>
-                Initially, I decided to try to marry all of these requirements
-                and tools in an unholy matrimony and it ended up being a mess
-                that worked because I loved it and tweaked it constantly. For
-                the most part, it was just a git repo where dotfiles were
-                templated with colors generated by pywal, then symlinked into my
-                home repo.
-            </p>
-            <p>
-                It was around the year and a half mark of running that system
-                that a few events conspired to have me revisit the setup and
-                create something a bit more robust. The first was grad school; I
-                just didn't really have time to tweak my configuration
-                constantly and I needed something that Just Worked
-                <sup>TM</sup>, but that wasn't too drastic a departure from what
-                I was used to. The second was that Valve
-                <a
-                    href="https://www.ign.com/articles/steam-deck-valve-announces-handheld-gaming-pc-2021-release"
-                    >announced the steam deck</a
-                >, which gave me a lot more confidence in how they'd throw their
-                weight behind their project project in linux gaming in general &
-                abandon my beloved (but very finnicky
-                <a
-                    href="https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF"
-                    >arch VFIO setup</a
-                >).
-            </p>
-            <p>
-                So, I sold my Nvidia GPU since the drivers on linux were a pain
-                to work with anyways, snagged a different AMD one, and migrated
-                to swaywm, where the
-                <a href="https://wayland.freedesktop.org/">wayland</a> situation
-                was surprisingly cushy.
-            </p>
-            <p>
-                I built around the wayland equivalents of polybar / rofi,
-                stopped using symlinks, and stopped using pywal entirely, since
-                I found the pallettes it was making to be lacking a bit in
-                contrast (it was around then that I also figured out I needed
-                glasses).
-            </p>
-            <p>
-                I dabbled a bit in exploring how to programmatically generate
-                colors with some of my own code, only to bail on the idea
-                because mathematical expression of color space & contrast is a
-                bit more than I was ready to bite off for a desktop environment
-                / window manager project.
-            </p>
-            <p>
-                I ultimately settled on a system somewhat similar to the
-                original, characterized by a git repo with template configs that
-                are copied into the <code>/home/kwkaiser</code> directory, where
-                colors are subsituted from a pallette (instead of generated from
-                an image). This ended up being a good call, I think, because
-                there're a lot of vim color pallettes that people with better
-                eyeballs than mine have come up with, and it's generally easy to
-                scrape the first 16 colors from them. Finally, I wrote some need
-                TUI tools to display background, font, and pallette selection.
-                That's pretty much everything I consistently theme for my system
-                day to day.
-            </p>
-            <p>
-                That's the gist of it though. The code is all available on my
+                It's pretty much all accomplished through copying templated
+                configution files & substituting in hex color values with sed
+                bash scripts. If this is the sort of thing you're interested in,
+                the code can be found
                 <a href="https://github.com/kwkaiser/desktop-utils/tree/desktop"
-                    >github</a
-                >. I have this git trackable, easily tweaked, easy to experiment
-                upon, easy to deploy, and simple to branch or extend desktop
-                environment setup that is surprisingly stable. I can finally
-                claim that I can go from an arch boot iso to an encrypted linux
-                installation with my "normal working environment" in < 15
-                minutes. Would I want to support this sort of thing for someone
-                else? Probably not, but it was a blast to play around with to
-                learn stuff like color theory, CSS, compositors, window
-                managers, bash scripting, etc. It's already proven itself
-                relatively useful after I've broken my arch install & needed to
-                do the whole setup again. It happens less frequently now, but I
-                suppose old habits die hard.
+                    >here</a
+                >. This setup has already proven pretty handy after breaking my
+                setup, which happens less often nowadays, but I suppose old
+                habits die hard.
             </p>
         </div>
     </body>

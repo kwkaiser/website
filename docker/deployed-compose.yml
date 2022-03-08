@@ -1,0 +1,40 @@
+version: "3.0"
+services:
+  swag:
+    image: linuxserver/swag
+    container_name: swag
+    networks:
+      - docker_proxynet
+    ports:
+      - 443:443
+
+    environment:
+      - URL=kwkaiser.io
+      - SUBDOMAINS=analytics
+      - EMAIL=karl@kwkaiser.io
+      - VALIDATION=dns
+      - DNSPLUGIN=cloudflare
+    volumes:
+      - /bulk/webserver-data/services/swag:/config
+
+  umamidb:
+    image: postgres
+    container_name: umamidb
+    networks:
+      - docker_proxynet
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=umami
+
+    volumes:
+      - /????:/var/lib/postgresql/data
+
+  umami:
+    container_name: umami
+    image: ghcr.io/mikecao/umami:postgresql-latest
+    networks:
+      - docker_proxynet
+    depends_on:
+      - umamidb
+    environment:
+      - DATABASE_URL=postgres://postgres:umami@umamidb:5432/postgres

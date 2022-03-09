@@ -29,7 +29,14 @@ body {
     text-decoration: none;
 }
 
-@media (min-width: 600px) {
+#post-title a {
+    color: black !important;
+}
+#post-title a:hover {
+    color: black !important;
+}
+
+@media (min-width: 800px) {
     #main {
         margin: auto;
         max-width: 65%;
@@ -80,7 +87,7 @@ body {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     #main {
         margin: auto;
         max-width: 95%;

@@ -3,9 +3,8 @@ services:
   swag:
     image: linuxserver/swag
     container_name: swag
-    networks:
-      - docker_proxynet
     ports:
+      - 80:80
       - 443:443
 
     environment:
@@ -15,25 +14,21 @@ services:
       - VALIDATION=dns
       - DNSPLUGIN=cloudflare
     volumes:
-      - /bulk/webserver-data/services/swag:/config
+      - ../data/webserver-data/swag:/config
 
   umamidb:
     image: postgres
     container_name: umamidb
-    networks:
-      - docker_proxynet
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=umami
 
     volumes:
-      - /????:/var/lib/postgresql/data
+      - ../data/webserver-data/umami/:/var/lib/postgresql/data
 
   umami:
     container_name: umami
     image: ghcr.io/mikecao/umami:postgresql-latest
-    networks:
-      - docker_proxynet
     depends_on:
       - umamidb
     environment:

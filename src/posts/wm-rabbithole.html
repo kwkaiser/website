@@ -6,189 +6,78 @@
     </head>
 
     <body>
-        {replace-nav}
-        <div class="content">
-            <h2>Falling down the window manager rabbithole</h2>
-            <hr />
-            <a href="#the-beginning"
-                ><h3 class="anchor-link">The beginning</h3></a
-            >
-            <p>
-                Desktop linux is, for all its quirks, my most comfortable
-                development environment. Everything is configurable to my exact
-                preference, even when those preferences lead to instability or
-                even unusability, as was often the case when I was familiarizing
-                myself with the operating system & its associated ecosystem.
-            </p>
-            <p>
-                I think my "nuke and pave" linux phase, where I was learning,
-                breaking, and constantly reinstalling, was in no small part
-                influential on the types of tools I liked to use. Tools that
-                were:
-            </p>
-            <ul>
-                <li>Light</li>
-                <li>Easy to install</li>
-                <li>Configurable via plaintext dotfiles</li>
-            </ul>
-            <p>
-                Plaintext configurations deserve their own recognition, but
-                really I'm just fond of any tool that lets me relegate its
-                configuration to an independent, homogeneous, version trackable
-                file I can shove into a git repo with all the other configs.
-            </p>
-            <p>
-                So right off the bat, that renders the two largest linux desktop
-                environment projects,
-                <a href="https://www.gnome.org/">GNOME</a> and
-                <a href="https://kde.org/plasma-desktop/">KDE plasma</a> largely
-                off the table. The same is true for a lot of the smaller desktop
-                environments as well.
-            </p>
-            <p>
-                That leaves
-                <a href="https://en.wikipedia.org/wiki/Window_manager"
-                    >window managers</a
-                >, the desktop environment's scrappier and less opinionated
-                relative. Generally without a default application suite and only
-                occasionally
-                <a
-                    href="https://en.wikipedia.org/wiki/Compositing_window_manager"
-                    >composited</a
-                >, they offer a much more skeletal default experience that
-                requires a certain degree of wrenching on to make enjoyable, but
-                ultimately provides more flexibility to focus on the parts of
-                your desktop experience you feel matter. There are a
-                <a
-                    href="https://en.wikipedia.org/wiki/Window_manager#Desktop_environments_and_window_managers_based_on_X11_or_Wayland"
-                    >lot</a
-                >
-                of window managers to choose from, but a loose categorization
-                can be built based on some preferences you might have if you're
-                the type of person to stray from the beaten path and install one
-                of these things.
-            </p>
-            <p>
-                If you like tiling WMs or have an affinity for vim keybindings,
-                you may find yourself at home amongst the tiling WMs like
-                <a href="https://awesomewm.org/">awesome</a>,
-                <a href="https://i3wm.org/">i3wm</a>, or
-                <a href="https://dwm.suckless.org/">dwm</a>. If you like the
-                stackable window managers (like those found when using Windows
-                or OSX), you might like
-                <a href="http://openbox.org/wiki/Main_Page">openbox.</a>
-            </p>
-            <p>
-                The other main difference between them that you might care about
-                has to do with flexibility. On a sliding scale of "configured
-                via editing source code" like the
-                <a href="https://suckless.org/philosophy/">suckless</a> dwm and
-                "fully packaged solution" like a desktop environment, I found
-                myself somewhere in the middle.
-            </p>
-            <p>
-                I want a default configuration, I'm not invested in compiling
-                it, and I'd like my configurations to be independent, but I also
-                want to choose all of my own software. So, ultimately I settled
-                on i3wm. Well, technically
-                <a href="https://swaywm.org/">swaywm</a> after migrating to
-                <a href="https://wayland.freedesktop.org/">wayland</a>.
-            </p>
-            <a href="#the-itch"><h3 class="anchor-link">The itch</h3></a>
-            <p>
-                So eventually you've got your window manager setup with some
-                keybindings you like and managed to get the holy trinity of:
-            </p>
-            <ul>
-                <li>
-                    <a href="https://wiki.archlinux.org/title/Rofi"
-                        >A launcher / window switcher</a
+        <div id="main">
+            {replace-sidebar}
+            <div id="content">
+                <h1 id="content-page-header">
+                    Falling down the window manager rabbithole
+                </h1>
+
+                <p>
+                    Desktop linux is, for all its quirks, my most comfortable
+                    development environment; really for just two primary
+                    reasons:
+                </p>
+                <ul>
+                    <li>
+                        I like writing code in an environment similar to where
+                        it will execute, which makes linux easy pickings for
+                        someone doing backend web dev work
+                    </li>
+                    <li>
+                        Your capacity to customize your development environment
+                        is a function of how masochistic you are about your
+                        configurations
+                    </li>
+                </ul>
+                <p>
+                    The cool thing about linux desktop environments & window
+                    managers is that if you've ever had a weird idea for how you
+                    wish you could interact with your computer, chance is
+                    someone gave a shot at manifesting that idea & it has a
+                    zealous following of people who swear by it as a
+                    productivity booster.
+                </p>
+                <p>
+                    Want an "out of the box" experience? One of the big desktop
+                    environments, like
+                    <a href="https://www.gnome.org/">GNOME</a> or
+                    <a href="https://kde.org/plasma-desktop/">KDE Plasma</a> are
+                    probably right for you. Love vim keybindings and hate your
+                    mouse? A tiling WM like
+                    <a href="https://i3wm.org/">i3wm</a> might be more your
+                    speed. If you're allergic to desktop icons and want to
+                    navigate through nested tree menus to launch everything, a
+                    stacking WM like
+                    <a href="http://openbox.org/wiki/Main_Page">openbox</a>
+                    would suit your fancy.
+                </p>
+                <p>
+                    With respect to window management & presentation, the
+                    general pattern I've noticed is that the further you trend
+                    from a traditional, mouse driven, floating window focused
+                    GUI, the smaller projects become & the more configuration
+                    responsibilities are levied on the user. Even after you've
+                    settled on how you want your environment to <i>look</i>, you
+                    have to choose from options that have their own spin on
+                    things you wouldn't have expected to care about before; like
+                    whether a compositor is built in, or how it's compiled, or
+                    how well it supports multiple monitors. All these factors
+                    end up leading to a
+                    <a
+                        href="https://en.wikipedia.org/wiki/Window_manager#Desktop_environments_and_window_managers_based_on_X11_or_Wayland"
+                        >lot of options.</a
                     >
-                </li>
-                <li>
-                    <a href="https://github.com/polybar/polybar"
-                        >A status bar of some sort</a
-                    >
-                </li>
-                <li>
-                    <a href="https://wiki.archlinux.org/title/Feh"
-                        >Something to set backgrounds</a
-                    >
-                </li>
-            </ul>
-            <p>
-                Maybe you throw in a compositor with some cool wobbly window
-                effects & some neat GTK theme you found on the arch wiki. You go
-                to share your setup somewhere like then
-                <a href="https://www.reddit.com/r/unixporn/">/r/unixporn</a>
-                subreddit (SFW) only to realize that you've barely scratched the
-                surface when you see the absolutely crazy configurations there.
-                Tree graphs generated from running linux processes, backgrounds
-                that change with the sunset or what's trending on twitter, color
-                pallettes and themes generated from images, and for some reason
-                anime catgirls galore.
-            </p>
-            <p>
-                The next step the rabbithole is to constantly tweak your
-                configuration, see something cool that someone else did, and get
-                the urge to eventually integrate it into your own setup. Maybe
-                it's having smart LEDs scripted to change their color to
-                whatever RGB value is most expressed on your screen, or
-                replacing all your configuration files with symlinks, or
-                something else entirely. My personal favorite way to take
-                advantage of the plaintext configurations of everything was via
-                <a href="https://github.com/dylanaraps/pywal">pywal</a>, to
-                match my system theme to my background. However, I found a lot
-                of the pallettes to be lacking enough contrast to code with
-                properly (perhaps not unrelated; I first learned I needed
-                glasses around then), so I moved to using pre-defined color
-                pallettes.
-            </p>
-            <a href="#something-breaks"
-                ><h3 class="anchor-link">Something breaks</h3></a
-            >
-            <p>
-                Eventually, you've created an absolute mess of tools tied
-                together with baling wire, duct tape, and your constant
-                attention. After a package update, or when you get a bit too
-                ambitious with your
-                <a href="https://xkcd.com/963/">xorg configuration</a> or nvidia
-                drivers, the house of cards inevitably comes crashing down.
-            </p>
-            <p>
-                This isn't all bad though, as long as you can stretch your
-                baling wire to last until your end of term project is finished,
-                because half the fun is tweaking the setup in the first place.
-                Eventually, your new focus is making the new environment easily
-                deployable & configurable with less hassle.
-            </p>
-            <a href="#end-of-the-rabbithole"
-                ><h3 class="anchor-link">End of the rabbithole</h3></a
-            >
-            <p>
-                For many, I think it's possible to sink endless quantities of
-                time into this sort of project, until you have animations
-                playing during your bootloader and fibonacci-sequenced window
-                division with your tiling WM, but I eventually settled on a
-                setup focused on deployability and configuring just three things
-                day to day:
-            </p>
-            <ul>
-                <li>Backgrounds</li>
-                <li>Fonts</li>
-                <li>Color pallettes</li>
-            </ul>
-            <p>
-                It's pretty much all accomplished through copying templated
-                configution files & substituting in hex color values with sed
-                bash scripts. If this is the sort of thing you're interested in,
-                the code can be found
-                <a href="https://github.com/kwkaiser/desktop-utils/tree/desktop"
-                    >here</a
-                >. This setup has already proven pretty handy after breaking my
-                setup, which happens less often nowadays, but I suppose old
-                habits die hard.
-            </p>
+                </p>
+                <p>
+                    So, eventually you just pick one. One a sliding scale of
+                    "full package," like a desktop environment, and "only
+                    configurable through editing source code," like
+                    <a href="https://dwm.suckless.org/">suckless software</a>, I
+                    found myself close to the middle and ended up settling on
+                    i3wm.
+                </p>
+            </div>
         </div>
     </body>
 </html>

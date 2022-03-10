@@ -32,7 +32,8 @@ body {
 #post-title a {
     color: black !important;
 }
-#post-title a:hover {
+
+.post-subtitle a {
     color: black !important;
 }
 

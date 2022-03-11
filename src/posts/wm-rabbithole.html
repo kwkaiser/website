@@ -12,6 +12,7 @@
                 <h1 id="content-page-header">
                     Falling down the window manager rabbithole
                 </h1>
+                <i> 2022-03-10 </i>
 
                 <p>
                     Desktop linux is, for all its quirks, my most comfortable
@@ -53,29 +54,105 @@
                     would suit your fancy.
                 </p>
                 <p>
-                    With respect to window management & presentation, the
-                    general pattern I've noticed is that the further you trend
-                    from a traditional, mouse driven, floating window focused
-                    GUI, the smaller projects become & the more configuration
-                    responsibilities are levied on the user. Even after you've
-                    settled on how you want your environment to <i>look</i>, you
-                    have to choose from options that have their own spin on
-                    things you wouldn't have expected to care about before; like
-                    whether a compositor is built in, or how it's compiled, or
-                    how well it supports multiple monitors. All these factors
-                    end up leading to a
+                    Even after you've chosen how you want your window manager or
+                    desktop environment to <i>look</i>, you have all these
+                    sub-options each influenced by their own philosophical
+                    perspective on software. If you want zero commercial
+                    influence, something like the Qt-based KDE might not fit the
+                    bill. If continuity and backwards compatibility are your
+                    primary focus, you might be best off with a WM that doesn't
+                    iterate and, aside from bugfixes, has barely changed in
+                    years. All these factors end up generating a
                     <a
                         href="https://en.wikipedia.org/wiki/Window_manager#Desktop_environments_and_window_managers_based_on_X11_or_Wayland"
-                        >lot of options.</a
-                    >
+                        >lot of options</a
+                    >.
                 </p>
                 <p>
-                    So, eventually you just pick one. One a sliding scale of
-                    "full package," like a desktop environment, and "only
-                    configurable through editing source code," like
+                    So, eventually you just pick one. On a sliding scale from
+                    "pre-packaged solution" like a big desktop environment to
+                    "configurable only through source editing & recompilation",
+                    like
                     <a href="https://dwm.suckless.org/">suckless software</a>, I
-                    found myself close to the middle and ended up settling on
-                    i3wm.
+                    fell somewhere in the middle with i3wm. However, you're
+                    likely to notice that, depending on your choice, your
+                    desktop feels very barren. A WM installed without friends is
+                    lonely indeed, and the next step is figuring out a patchwork
+                    quilt of tools to fill the hole left by the now-absent
+                    desktop environment associated applications you once took
+                    for granted. You have no built in GNOME-calculator or KDE
+                    system monitor.
+                </p>
+                <p>
+                    This is a double edged process. On the plus side, it's a
+                    great way of pruning your installation into a lean, mean
+                    machine, since the only things you will reinstall or seek
+                    alternatives for are things you cared about in the first
+                    place. On the other hand, you have to go through the
+                    sometimes exhausting process of finding an alternative for
+                    things you never realized people <i>made</i> alternatives
+                    for. There's a lot of trial and error involved in picking a
+                    new status bar, configuring it, trying to figure out why its
+                    plugins aren't working with your audio stack & won't display
+                    your current volume, researching, trying a new one, etc,
+                    then repeating the process with a file browser, a
+                    notification manager, a compositor, etc.
+                </p>
+                <p>
+                    If you persevere though, there're some very cool things you
+                    can create that you'd have a much tougher time recreating on
+                    Windows, OSX, or in a big desktop environment. The folks at
+                    the
+                    <a href="https://www.reddit.com/r/unixporn/"
+                        >unixporn subreddit</a
+                    >
+                    (SFW) and their nonstop posting of terminal-rendered ASCII
+                    tools composited to have corner rounding, huge shadows, and
+                    wobbly windows or flame effects is a constant reminder that
+                    with some practice it is possible to make some very neat and
+                    comfortable looking environments.
+                </p>
+                <p>
+                    Given that many of the tools now installed on your desktop
+                    are configured via plaintext
+                    <a href="https://wiki.archlinux.org/title/Dotfiles"
+                        >dotfiles</a
+                    >, there's a limitless amount of tweaking and scripting you
+                    can do. You can programmatically generate backgrounds based
+                    on your computer's most active processes, or what's trending
+                    on twitter. You can use something like
+                    <a href="https://github.com/dylanaraps/pywal">pywal</a> to
+                    match the color palette of your GTK theme to your
+                    background. As long as you're handy with
+                    <code>bash</code> and <code>sed</code> or a little bit of
+                    python, the sky's the limit.
+                </p>
+                <p>
+                    I think there's a tendency to "go all out" and end up with a
+                    house of cards that all falls apart when some underlying
+                    dependency updates, à la
+                    <a href="https://xkcd.com/2347/">xkcd 2347</a>. However,
+                    with time it's possible to build your little suite of tools
+                    and configurations into something that I've felt is more
+                    stable than many big DEs. The best part about this sort of
+                    system is that plaintext configurations make serializing and
+                    version tracking your entire setup very simple; at the end
+                    of the day you can just shove all your configurations into a
+                    git tracked directory. What's more, is you can branch into
+                    different configurations between your laptop and desktop and
+                    tie in all sorts of deployment scripts to go from the arch
+                    linux iso installation screen to a fully featured and
+                    familiar environment in just a few minutes. That's what I
+                    have for my systems
+                    <a
+                        href="https://github.com/kwkaiser/desktop-utils/tree/desktop"
+                        >here</a
+                    >.
+                </p>
+                <p>
+                    All in all I'd definitely suggest at least looking down the
+                    rabbithole if you're not content with the way you interact
+                    with your computer. There's probably a WM out there for you.
                 </p>
             </div>
         </div>

@@ -29,11 +29,15 @@ body {
     text-decoration: none;
 }
 
-#post-title a {
-    color: black !important;
+#post-subtitle h3 a {
+    color: black;
 }
 
-.post-subtitle a {
+#post-subtitle h3 a:hover {
+    animation: navigation_hover 0.7s forwards;
+}
+
+.post-anchor a {
     color: black !important;
 }
 
@@ -44,7 +48,7 @@ body {
     }
 
     #sidebar {
-        position: absolute;
+        position: fixed;
         top: 10%;
         height: 80%;
         width: 12%;

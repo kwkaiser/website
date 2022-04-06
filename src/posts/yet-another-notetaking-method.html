@@ -9,14 +9,117 @@
         <div id="main">
             {replace-sidebar}
             <div id="content">
-                <h1 id="content-page-header">
-                    How I learned to stop worrying and love plaintext notes
-                </h1>
+                <h1 id="content-page-header">Yet Another Notetaking Method</h1>
                 <i> 2022-03-23</i>
                 <p>
-                    <i>Or, overcomplicating Yet Another notetaking method</i>
+                    <i
+                        >Or, how I learned to stop worrying and love the text
+                        files</i
+                    >
                 </p>
-                 
+                <h3 class="post-anchor">
+                    <a href="#defining-notes"> Defining notes </a>
+                </h3>
+                <p>
+                    In my mind, notes are kind of a weird thing. I think there's
+                    a tendency to forget that you're writing notes for yourself,
+                    and you're allowed (perhaps even encouraged) to take
+                    shortcuts best facilitated by whatever quirks of
+                    consciousness are unique to you. With respect to the
+                    balancing act of trying to capture enough detail in your
+                    notes, but not too much, I've always tended towards the
+                    latter rather than the former. With that in mind, I think
+                    it's helpful to make the distinction between notes and
+                    documentation. I would argue that "notes" are simple, make
+                    sense to those who wrote them, and capture adequate detail.
+                    Alternatively, I'd suggest that "documentation" is meant to
+                    capture as much detail as possible, but remain readable to a
+                    broad or target audience.
+                </p>
+                <p>
+                    With that definition, I wanted to make a notetaking system
+                    that was:
+                </p>
+                <ul>
+                    <li>Simple</li>
+                    <li>
+                        As immune to lock-in or deprecating tech as possible
+                    </li>
+                    <li>Ergonomic</li>
+                    <li>Distributed</li>
+                    <li>Encrypted</li>
+                    <li>Scriptable</li>
+                </ul>
+                <h3 class="post-anchor">
+                    <a href="#existing-solution">Existing solutions</a>
+                </h3>
+                <p>
+                    Perhaps unsurprisingly, there are a <i>lot</i> of existing
+                    solutions out there. There're of course a bunch of
+                    proprietary or corporately sponsored solutions, like Apple
+                    notes, or Microsoft OneNote, etc. I ruled these out because
+                    they were so closely tied with the company that made them.
+                    Other solutions, like
+                    <a href="https://obsidian.md/">obsidian</a>,
+                    <a href="https://www.notion.so/">notion</a>, or nextcloud
+                    notes either felt like they came with too much
+                    baggage/dependencies, required subscriptions to have sync,
+                    were tailored towards teams (e.g. were addressing
+                    "documentation"), or were just not that comfy to use.
+                </p>
+                <h3 class="post-anchor">
+                    <a href="#anchor">anchor</a>
+                </h3>
+                <p>
+                    Well, what I eventually decide on? GPG encrypted plain text
+                    files in a directory tree. I know, I know. It seems like a
+                    pretty regressive solution, but think about it: at the end
+                    of the day, there's a ton of tooling in the Linux ecosystem
+                    made to work with text files. I get to use an editor of my
+                    choice. Really, it all boils down to just a few items:
+                </p>
+                <ul>
+                    <li>
+                        <a href="https://www.passwordstore.org/"
+                            >password store</a
+                        >
+                        does most of the heavy lifting, frankly. It's described
+                        as a password manager but I think it's a pretty
+                        ergonomic way to manage any encrypted text file. It
+                        smooths some of the rougher edges of working with GPG &
+                        auto-committing new files to a git repo. All the output
+                        is scriptable, but a lot of the functionality you might
+                        want to built in a script (like grepping through the
+                        encrypted files) may already be built in.
+                    </li>
+
+                    <li>
+                        <a href="https://github.com/junegunn/fzf">fzf</a> makes
+                        searching through all the notes dirt simple for quick
+                        referencing.
+                    </li>
+                </ul>
+
+                <p>
+                    All the ergonomics, you build anything you want for
+                    yourself. Really I only have two scripts; one for creating a
+                    datetime stamped file for journaling, and another for
+                    creating named notes for ideas, todo lists, recipes, places
+                    I've eaten that were worth remembering, etc. Everything is
+                    easily syncable between devices, as long as the git repo is
+                    accessible through ssh or something else on one of your
+                    servers.
+                </p>
+                <h3 class="post-anchor">
+                    <a href="#flaws">Flaws</a>
+                </h3>
+                <p>
+                    As much as I like this system, it does have some flaws. It's
+                    not particularly well suited for phone note taking; merely
+                    phone note referencing. All the scripted solutions you may
+                    have built for yourself on your desktop or laptop may not
+                    carry over as well to your phone.
+                </p>
             </div>
         </div>
     </body>

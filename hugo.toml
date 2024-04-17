@@ -1,0 +1,7 @@
+baseURL = 'https://kwkaiser.io/'
+languageCode = 'en-us'
+title = "Karl Kaiser's site"
+
+[module]
+  [[module.imports]]
+    path = 'github.com/lxndrblz/anatole'

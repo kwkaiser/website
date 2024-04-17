@@ -9,9 +9,10 @@ title = "Kaiser's site"
 [params]
 title = ""
 author = 'Karl Kaiser'
+mainSections = []
 
 description = """
-Some guy who does some code stuff
+Software engineer, neuroscience enthusiast, some other stuff here
 """
 
 profilePicture = "images/profile.jpg"
@@ -35,11 +36,23 @@ url = "mailto:karl@kwkaiser.io"
   [[menu.main]]
   name = "Home"
   identifier = "home"
-  weight = 100
+  weight = 1 
   url = "/"
 
   [[menu.main]]
-  name = "About"
-  weight = 300
-  identifier = "about"
-  url = "/about/"
+  name = "Experience"
+  identifier = "experience"
+  weight = 2
+  url = "/experience"
+
+  [[menu.main]]
+  name = "Publications"
+  identifier = "publications"
+  weight = 3
+  url = "/publications"
+
+  [[menu.main]]
+  name = "Resume"
+  identifier = "resume"
+  weight = 4
+  url = "/resume.pdf"

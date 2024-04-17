@@ -6,5 +6,27 @@
     <description>Recent content on Kaiser&#39;s site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://localhost:1313/experience/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/experience/</guid>
+      
+        <description>foo </description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/publications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/publications/</guid>
+      
+        <description>bar </description>
+      
+    </item>
+    
   </channel>
 </rss>

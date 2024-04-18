@@ -3,16 +3,7 @@ version: '3'
 tasks:
   clean:
     cmds:
-      - rm -rf mount
-
-  secrets:
-    prompt: Did you set the CLOUDFLARE_EMAIL and CLOUDFLARE_API_KEY envars?
-    cmds:
-      - mkdir -p mount
-      - rm -f mount/cloudflare.ini
-      - echo "dns_cloudflare_email=$CLOUDFLARE_EMAIL" >> mount/cloudflare.ini
-      - echo "dns_cloudflare_api_key=$CLOUDFLARE_API_KEY" >> mount/cloudflare.ini
-      - chmod 600 mount/cloudflare.ini
+      - rm -rf public
 
   dev:
     cmds:
@@ -20,14 +11,11 @@ tasks:
 
   build:
     cmds:
-      - mkdir -p mount
       - rm -rf public
-      - rm -rf mount/public
       - hugo
-      - cp -r public mount/
 
   deploy:
-    deps: [secrets, build]
+    deps: [build]
     cmds:
       - docker-compose up -d
 

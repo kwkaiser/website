@@ -11,8 +11,6 @@ services:
       - URL=kwkaiser.io
       - SUBDOMAINS=www
       - EMAIL=karl@kwkaiser.io
-      - VALIDATION=dns
-      - DNSPLUGIN=cloudflare
+      - VALIDATION=http
     volumes:
-      - ./mount/cloudflare.ini:/config/dns-conf/cloudflare.ini
-      - ./mount/public:/config/www
+      - ./public:/config/www

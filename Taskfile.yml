@@ -14,6 +14,10 @@ tasks:
       - rm -rf public
       - hugo
 
+  build-docker:
+    cmds:
+      - docker build -t kwkaiser/website .
+
   deploy:
     deps: [build]
     cmds:

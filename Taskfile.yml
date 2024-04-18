@@ -12,6 +12,7 @@ tasks:
       - rm -f mount/cloudflare.ini
       - echo "dns_cloudflare_email=$CLOUDFLARE_EMAIL" >> mount/cloudflare.ini
       - echo "dns_cloudflare_api_key=$CLOUDFLARE_API_KEY" >> mount/cloudflare.ini
+      - chmod 600 mount/cloudflare.ini
 
   dev:
     cmds:

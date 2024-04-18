@@ -46,13 +46,19 @@ url = "mailto:karl@kwkaiser.io"
   url = "/experience"
 
   [[menu.main]]
+  name = "Education"
+  identifier = "education"
+  weight = 3
+  url = "/education"
+
+  [[menu.main]]
   name = "Publications"
   identifier = "publications"
-  weight = 3
+  weight = 4 
   url = "/publications"
 
   [[menu.main]]
   name = "Resume"
   identifier = "resume"
-  weight = 4
+  weight = 5 
   url = "/resume.pdf"

@@ -1,0 +1,18 @@
+version: "3.0"
+services:
+  swag:
+    image: linuxserver/swag
+    container_name: swag
+    ports:
+      - 80:80
+      - 443:443
+
+    environment:
+      - URL=kwkaiser.io
+      - SUBDOMAINS=www
+      - EMAIL=karl@kwkaiser.io
+      - VALIDATION=dns
+      - DNSPLUGIN=cloudflare
+    volumes:
+      - ./mount/cloudflare.ini:/config/dns-conf/cloudflare.ini
+      - ./mount/public:/config/www

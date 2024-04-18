@@ -1,18 +1,8 @@
 # Use a base image without Hugo installed
 FROM alpine:latest AS builder
 
-# Set environment variables for Hugo version and download URL
-ENV HUGO_VERSION=0.88.1
-ENV HUGO_DOWNLOAD_URL=https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz
-
-# Install dependencies
-RUN apk add --no-cache wget tar
-
-# Download and install Hugo
-RUN wget ${HUGO_DOWNLOAD_URL} \
-    && tar xvzf hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz \
-    && mv hugo /usr/local/bin/hugo \
-    && rm -rf hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz
+RUN apk add --no-cache git make musl-dev go
+RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community hugo
 
 # Set the working directory in the container
 WORKDIR /app

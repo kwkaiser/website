@@ -1,6 +1,6 @@
 ## Experience
 
-#### Software Engineer [_Finch_](https://www.tryfinch.com/)
+#### Software Engineer | [_Finch_](https://www.tryfinch.com/)
 
 05/2022 - present
 
@@ -21,7 +21,7 @@ Specifically:
 
 ---
 
-#### Data Engineer [_Miltenyi Biotec_](https://www.miltenyibiotec.com/US-en/)
+#### Data Engineer | [_Miltenyi Biotec_](https://www.miltenyibiotec.com/US-en/)
 
 10/2020 - 05/2022
 
@@ -31,6 +31,6 @@ using NodeJS, ReactJS, Postgres, & Kubernetes.
 
 ---
 
-#### University of Vermont IT Technician [_UVM_](https://www.uvm.edu/)
+#### University of Vermont IT Technician | [_UVM_](https://www.uvm.edu/)
 
 07/2019 - 09/2019

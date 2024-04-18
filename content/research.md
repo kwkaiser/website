@@ -8,7 +8,7 @@ Matt Green, Todd DeLuca, Karl Kaiser
 
 _Proceedings of the 2020 Genetic and Evolutionary Computation Conference_
 
-[Link]('google.com')
+[PDF](/pdf/modeling-wildfires-ca.pdf) | [Journal](https://dl.acm.org/doi/10.1145/3377930.3389836)
 
 ---
 
@@ -18,4 +18,4 @@ Matt Green, Todd DeLuca, Karl Kaiser
 
 _arXiv preprint_
 
-[Link]('google.com')
+[PDF](/pdf/modeling-wildfires-dnn.pdf) | [Preprint](https://arxiv.org/pdf/2009.03977.pdf)

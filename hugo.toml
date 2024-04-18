@@ -12,7 +12,7 @@ author = 'Karl Kaiser'
 mainSections = []
 
 description = """
-Software engineer, neuroscience enthusiast, some other stuff here
+Software engineer, neuroscience enthusiast, hobbyist & tinkerer
 """
 
 profilePicture = "images/profile.jpg"
@@ -52,10 +52,10 @@ url = "mailto:karl@kwkaiser.io"
   url = "/education"
 
   [[menu.main]]
-  name = "Publications"
-  identifier = "publications"
+  name = "Research"
+  identifier = "research"
   weight = 4 
-  url = "/publications"
+  url = "/research"
 
   [[menu.main]]
   name = "Resume"

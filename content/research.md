@@ -14,7 +14,7 @@ _Proceedings of the 2020 Genetic and Evolutionary Computation Conference_
 
 #### Modeling Wildfire Perimeter Evolution using Deep Neural Networks
 
-Matt Green, Todd DeLuca, Karl Kaiser
+Matt Green, Karl Kaiser, Nat Shenton
 
 _arXiv preprint_
 

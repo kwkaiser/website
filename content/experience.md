@@ -1,6 +1,6 @@
 ## Experience
 
-#### Software Engineer | [_Finch_](https://www.tryfinch.com/)
+#### Senior Software Engineer | [_Finch_](https://www.tryfinch.com/)
 
 05/2022 - present
 

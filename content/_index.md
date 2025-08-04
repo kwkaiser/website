@@ -6,10 +6,11 @@ I've worked on all sorts of stuff, but a few of the hot button topics I have som
 
 - Full stack web dev in the NodeJS ecosystem
 - Database design & administration
-- Natural language processing
-- Deep learning with CNNs, RNNs & the like
-- Evolutionary algorithms & simulation
 - Developing & deploying distributed applications
+- Natural language processing
+- Working with AI (CNNs, RNNs, transformers & the like)
+- Productionizing AI (context engineering & RAG)
+- Evolutionary algorithms & simulation
 
 I'm always happy to chat, so feel free to reach out with an email :)
 
@@ -20,4 +21,4 @@ I currently
 - [x] **am**
 - [ ] am not
 
-open to new work opportunities!
+exploring new work opportunities!

@@ -4,7 +4,7 @@
 
 05/2025 - Present
 
-Working towards optimizing parts of the logistics industry via AI agents.
+At Pallet, I'm currently working towards optimizing parts of the logistics industry via AI agents.
 
 ---
 
@@ -12,13 +12,13 @@ Working towards optimizing parts of the logistics industry via AI agents.
 
 05/2022 - 04/2025
 
-Worked towards building a unified payroll API (think Plaid, for payroll). Focused much of my time on the backend around our jobs system responsible for reading and writing data from/to payroll providers, with a few key projects being:
+At Finch, I worked towards building a unified payroll API (think Plaid, for payroll). I focused much of my time on the backend around our jobs system responsible for reading and writing data from/to payroll providers; with a few key projects being:
 
 - Migrating the job system from running alonside alongside our api to running jobs in containerized, ephemeral environments via AWS lambdas + ECS (helped improve system & integration stability)
 - Migrating jobs from ECS to EKS (kubernetes migration, helped save costs by allowing variable job specs)
 - Migrating jobs from EKS to [Temporal](https://temporal.io/)
 
-Was heavily involved in several other systems-focused projects around scaling infra, improving observability, etc as well as more product-facing workstreams such as the introduction of Finch's [deductions API](https://www.tryfinch.com/product/deductions).
+I was heavily involved in several other systems-focused projects around scaling infra, improving observability, etc, as well as more product-facing workstreams such as the introduction of Finch's [deductions API](https://www.tryfinch.com/product/deductions).
 
 ---
 
@@ -26,7 +26,7 @@ Was heavily involved in several other systems-focused projects around scaling in
 
 10/2020 - 05/2022
 
-Built & administered custom lab information system enabling experiment &
+At Miltenyi, I built & administered custom lab information system enabling experiment &
 instrument tracking & automated data analysis for in-house genome sequencers.
 
 ---

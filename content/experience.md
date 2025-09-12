@@ -14,7 +14,7 @@ At Pallet, I'm currently working towards optimizing parts of the logistics indus
 
 At Finch, I worked towards building a unified payroll API (think Plaid, for payroll). I focused much of my time on the backend around our jobs system responsible for reading and writing data from/to payroll providers; with a few key projects being:
 
-- Migrating the job system from running alonside alongside our api to running jobs in containerized, ephemeral environments via AWS lambdas + ECS (helped improve system & integration stability)
+- Migrating the job system from running alongside our api to running jobs in containerized, ephemeral environments via AWS lambdas + ECS (helped improve system & integration stability)
 - Migrating jobs from ECS to EKS (kubernetes migration, helped save costs by allowing variable job specs)
 - Migrating jobs from EKS to [Temporal](https://temporal.io/)
 

@@ -40,7 +40,12 @@
 // Lato is the FlowCV default; fall back to Helvetica Neue if not installed.
 #set text(font: ("Lato", "Helvetica Neue"), size: 10pt, fill: rgb("#1a1a1a"))
 #set par(leading: 0.45em)
-#set list(indent: 0.6em, body-indent: 0.4em, marker: text(size: 0.85em, "•"), spacing: 0.5em)
+#set list(
+  indent: 0.6em,
+  body-indent: 0.4em,
+  marker: text(size: 0.85em, "•"),
+  spacing: 0.5em,
+)
 
 // --- Helpers ---
 #let section(title) = {
@@ -63,13 +68,17 @@
 
 #let role(title, org, url: none) = block(spacing: 0pt)[
   #text(weight: "bold", title) \
-  #text(fill: rgb("#444444"))[#if url != none { extlink(url, org) } else { org }]
+  #text(fill: rgb("#444444"))[#if url != none { extlink(url, org) } else {
+    org
+  }]
 ]
 
-// Uniform skill cell — always renders a subtitle line (using a non-breaking
-// space when empty) so all rows in the skills grid have identical heights.
-// Skill cell — bold name, optional muted subtitle on a second line.
-#let skill(name, sub: none) = block(spacing: 0pt)[
+// Skill cell — bold name + optional muted subtitle, rendered in a fixed-height
+// block so every row in the skills grid has consistent vertical rhythm
+// regardless of whether the cell has a subtitle.
+// Skill cell — fixed height so every row in the skills grid has consistent
+// vertical rhythm regardless of whether the cell has a subtitle.
+#let skill(name, sub: none) = block(height: 2.4em, spacing: 0pt)[
   #text(weight: "bold", name)
   #if sub != none [
     \ #text(size: 9pt, fill: rgb("#555555"), sub)
@@ -90,7 +99,7 @@
     #h(0.6em) #fa-link() #h(0.25em) #link("https://kwkaiser.io")[kwkaiser.io]
   ]
 ]
-#v(0.2em)
+#v(-0.4em)
 
 // --- Work Experience ---
 #section("Work Experience")
@@ -98,10 +107,10 @@
 #entry("2025 – Present")[
   #role("Senior Software Engineer", "Pallet", url: "https://www.pallet.com/")
   #v(0.55em)
-  Building the agent runtime, eval, and observability platform behind Pallet's AI freight & logistics products:
-  - Owned the event-driven agent graph runtime + offline simulation engine for LLM workflow eval & regression testing
-  - Built E2E observability — OTel tracing, Datadog log/metric pipelines, per-field LLM-extraction accuracy metrics
-  - Designed multi-model LLM-consensus PDF extraction with field-level confidence scoring
+  Contributed to agent runtime, eval, and observability platform behind Pallet's AI freight & logistics products:
+  - Owned the event-driven workflow graph runtime + simulation engine for LLM workflow eval & regression testing
+  - Instrumented E2E observability — OTel tracing, Datadog log/metric pipelines, LLM-extraction accuracy metrics
+  - Led initiatives around customer document & data extraction
 ]
 
 #entry("05/2022 – 05/2025")[
@@ -115,33 +124,39 @@
 ]
 
 #entry("10/2020 – 05/2022")[
-  #role("Data Engineer", "Miltenyi Biotech", url: "https://www.miltenyibiotec.com/US-en/?countryRedirected=1")
-  #v(0.4em)
-  Built and administered custom lab information system for experiment and instrument tracking & automated data analysis for in-house genome sequencers.
+  #role(
+    "Data Engineer",
+    "Miltenyi Biotech",
+    url: "https://www.miltenyibiotec.com/US-en/?countryRedirected=1",
+  )
 ]
 
 // --- Education ---
 #section("Education")
 
 #entry("08/2018 – 05/2020")[
-  #role("Masters of Science: Computer Science", "University of Vermont")
+  #role("Master of Science: Computer Science", "University of Vermont")
 ]
 
 #entry("08/2016 – 05/2019")[
-  #role("Bachelors of Science: Neuroscience", "University of Vermont")
+  #role("Bachelor of Science: Neuroscience", "University of Vermont")
 ]
 
 // --- Publications ---
 #section("Publications")
 
 #entry("2020")[
-  #extlink("https://dl.acm.org/doi/10.1145/3377930.3389836", text(weight: "bold")[Modeling Wildfires Using Evolutionary Cellular Automata]) \
+  #extlink("https://dl.acm.org/doi/10.1145/3377930.3389836", text(
+    weight: "bold",
+  )[Modeling Wildfires Using Evolutionary Cellular Automata]) \
   _Genetic and Evolutionary Computation Conference (GECCO)_ \
   Created prediction model utilizing agent-based CAs with spread function evolved via symbolic regression.
 ]
 
 #entry("2020")[
-  #extlink("https://arxiv.org/pdf/2009.03977.pdf", text(weight: "bold")[Modeling Wildfire Perimeter Evolution using Deep Neural Networks]) \
+  #extlink("https://arxiv.org/pdf/2009.03977.pdf", text(
+    weight: "bold",
+  )[Modeling Wildfire Perimeter Evolution using Deep Neural Networks]) \
   _(Preprint)_ \
   Created data pipeline using USGS and NOAA APIs to collect, clean, and partition datasets to train a CNN to predict wildfire perimeter spread.
 ]
@@ -152,16 +167,19 @@
 #grid(
   columns: (1fr, 1fr),
   column-gutter: 1em,
-  row-gutter: 0.55em,
-  skill("Python"), skill("Rust"),
-  skill("Golang"), skill("SQL / NoSQL"),
-  skill("Javascript / Typescript", sub: "Node / Express / Electron / React"),
+  row-gutter: 0em,
+  skill("JavaScript / TypeScript"), skill("Python"),
+  skill("SQL / NoSQL"), skill("Golang"),
+  skill("Rust"),
+
+  skill("Leadership", sub: "Mentoring, pair programming"),
+
   skill(
     "DevOps & Development Tools",
-    sub: "Linux / Ansible / Kubernetes / Helm",
+    sub: "Nix, Terraform, K8s, Helm",
   ),
 
-  skill("Cloud Platforms"),
+  skill("Cloud Platforms", sub: "AWS, GCP, Azure"),
   skill(
     "Data Science + ML",
     sub: "Constructing eval sets, prompt iteration, etc",

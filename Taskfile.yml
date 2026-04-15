@@ -9,7 +9,19 @@ tasks:
     cmds:
       - hugo server
 
+  build-resume:
+    desc: Compile the typst resume into both static/pdf and content/.
+    sources:
+      - docs/resume.typ
+    generates:
+      - static/pdf/resume.pdf
+      - content/resume.pdf
+    cmds:
+      - typst compile docs/resume.typ static/pdf/resume.pdf
+      - cp static/pdf/resume.pdf content/resume.pdf
+
   build:
+    deps: [build-resume]
     cmds:
       - rm -rf public
       - hugo

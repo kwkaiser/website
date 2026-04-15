@@ -1,4 +1,7 @@
 public/*
 resources/*
 mount
-*.pdf
+static/pdf/resume.pdf
+docs/*.pdf
+layouts/*
+.task/*

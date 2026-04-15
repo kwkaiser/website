@@ -26,8 +26,11 @@ tasks:
       - rm -rf public
       - hugo
 
+  # NOTE: docker-compose.yaml uses linuxserver/swag and mounts ./public directly
+  # as the webroot, so the image we build here is not actually consumed by the
+  # deploy. Kept around for ad-hoc use or future migration.
   build-docker:
-    desc: Build the Docker image; skipped when no inputs have changed.
+    desc: Build the standalone Docker image (not used by deploy).
     deps: [build-resume]
     sources:
       - Dockerfile
@@ -45,12 +48,12 @@ tasks:
       - docker build -t kwkaiser/website --iidfile .task/build-docker.iid .
 
   deploy:
-    deps: [build-docker]
+    deps: [build]
     cmds:
       - docker-compose up -d
 
   redeploy:
-    deps: [build-docker]
+    deps: [build]
     cmds:
       - docker-compose down
       - docker-compose up -d

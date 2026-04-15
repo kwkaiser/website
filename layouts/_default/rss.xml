@@ -1,18 +1,10 @@
 {{- /*
   Local override of anatole's rss.xml. The theme references .Site.Author.email
   and .Site.Author.name, which were removed from Hugo's Site object — we read
-  the same values from the top-level [author] table via site.Data / Params.
+  them from params.author (string) and params.email instead.
 */ -}}
-{{- $authorEmail := "" -}}
-{{- $authorName := "" -}}
-{{- with site.Params.author -}}
-  {{- if reflect.IsMap . -}}
-    {{- $authorEmail = .email -}}
-    {{- $authorName = .name -}}
-  {{- else -}}
-    {{- $authorName = . -}}
-  {{- end -}}
-{{- end -}}
+{{- $authorEmail := site.Params.email | default "" -}}
+{{- $authorName := site.Params.author | default "" -}}
 {{- $pctx := . -}}
 {{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
 {{- $pages := slice -}}

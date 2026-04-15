@@ -68,5 +68,3 @@ url = "mailto:karl@kwkaiser.io"
   identifier = "resume"
   weight = 5
   url = "/resume.pdf"
-    [menu.main.params]
-    download = "karl-kaiser-resume.pdf"

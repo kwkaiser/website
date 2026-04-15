@@ -40,7 +40,7 @@
 // Lato is the FlowCV default; fall back to Helvetica Neue if not installed.
 #set text(font: ("Lato", "Helvetica Neue"), size: 10pt, fill: rgb("#1a1a1a"))
 #set par(leading: 0.45em)
-#set list(indent: 0.6em, body-indent: 0.4em, marker: text(size: 0.85em, "•"))
+#set list(indent: 0.6em, body-indent: 0.4em, marker: text(size: 0.85em, "•"), spacing: 0.5em)
 
 // --- Helpers ---
 #let section(title) = {
@@ -58,7 +58,7 @@
     row-gutter: 0.2em,
     text(size: 9pt, fill: rgb("#555555"), date), body,
   )
-  v(0.5em)
+  v(0.4em)
 }
 
 #let role(title, org, url: none) = block(spacing: 0pt)[
@@ -68,11 +68,12 @@
 
 // Uniform skill cell — always renders a subtitle line (using a non-breaking
 // space when empty) so all rows in the skills grid have identical heights.
+// Skill cell — bold name, optional muted subtitle on a second line.
 #let skill(name, sub: none) = block(spacing: 0pt)[
-  #text(weight: "bold", name) \
-  #text(size: 9pt, fill: rgb("#555555"), if sub != none { sub } else {
-    "\u{00A0}"
-  })
+  #text(weight: "bold", name)
+  #if sub != none [
+    \ #text(size: 9pt, fill: rgb("#555555"), sub)
+  ]
 ]
 
 // --- Header ---
@@ -97,15 +98,15 @@
 #entry("2025 – Present")[
   #role("Senior Software Engineer", "Pallet", url: "https://www.pallet.com/")
   #v(0.55em)
-  At Pallet, I'm improving the efficiency of the freight / logistics space with AI. I've been heavily involved in:
-  - Instrumenting E2E observability for the system
-  - PDF extraction via LLM-consensus
-  - Exploring data refinement via adversarial judge/generator LLMs
+  Building the agent runtime, eval, and observability platform behind Pallet's AI freight & logistics products:
+  - Owned the event-driven agent graph runtime + offline simulation engine for LLM workflow eval & regression testing
+  - Built E2E observability — OTel tracing, Datadog log/metric pipelines, per-field LLM-extraction accuracy metrics
+  - Designed multi-model LLM-consensus PDF extraction with field-level confidence scoring
 ]
 
 #entry("05/2022 – 05/2025")[
   #role("Senior Software Engineer", "Finch", url: "https://tryfinch.com/")
-  #v(0.55em)
+  #v(0.4em)
   At Finch, I built a unified payroll API (think Plaid, for payroll) with a few key projects being:
   - Genericizing our job-running framework to handle new product scopes
   - Onboarding a net-new benefits product onto our distributed job runner
@@ -115,7 +116,7 @@
 
 #entry("10/2020 – 05/2022")[
   #role("Data Engineer", "Miltenyi Biotech", url: "https://www.miltenyibiotec.com/US-en/?countryRedirected=1")
-  #v(0.55em)
+  #v(0.4em)
   Built and administered custom lab information system for experiment and instrument tracking & automated data analysis for in-house genome sequencers.
 ]
 
@@ -151,7 +152,7 @@
 #grid(
   columns: (1fr, 1fr),
   column-gutter: 1em,
-  row-gutter: 0.5em,
+  row-gutter: 0.55em,
   skill("Python"), skill("Rust"),
   skill("Golang"), skill("SQL / NoSQL"),
   skill("Javascript / Typescript", sub: "Node / Express / Electron / React"),
@@ -170,5 +171,4 @@
     "Distributed Systems",
     sub: "Temporal, event-based systems, HTC engines",
   ),
-  skill(""),
 )

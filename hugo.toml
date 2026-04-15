@@ -8,8 +8,14 @@ title = "Kaiser's site"
 
 [params]
 title = ""
-author = 'Karl Kaiser'
 mainSections = []
+
+  # Top-level [params.author] table — anatole's rss.xml override reads .name
+  # and .email from here. Plain `author = "Karl Kaiser"` worked in old versions
+  # but newer Hugo + theme combos need the structured form.
+  [params.author]
+  name = "Karl Kaiser"
+  email = "karl@kwkaiser.io"
 
 description = """
 Software engineer, neuroscience enthusiast, hobbyist & tinkerer

@@ -2,6 +2,6 @@ public/*
 resources/*
 mount
 static/pdf/resume.pdf
+content/resume.pdf
 docs/*.pdf
-layouts/*
 .task/*

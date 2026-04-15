@@ -27,16 +27,30 @@ tasks:
       - hugo
 
   build-docker:
+    desc: Build the Docker image; skipped when no inputs have changed.
+    deps: [build-resume]
+    sources:
+      - Dockerfile
+      - hugo.toml
+      - go.mod
+      - go.sum
+      - content/**/*
+      - static/**/*
+      - layouts/**/*
+      - archetypes/**/*
+    generates:
+      - .task/build-docker.iid
     cmds:
-      - docker build -t kwkaiser/website .
+      - mkdir -p .task
+      - docker build -t kwkaiser/website --iidfile .task/build-docker.iid .
 
   deploy:
-    deps: [build]
+    deps: [build-docker]
     cmds:
       - docker-compose up -d
 
   redeploy:
-    deps: [build]
+    deps: [build-docker]
     cmds:
       - docker-compose down
       - docker-compose up -d

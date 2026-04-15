@@ -49,11 +49,11 @@
 
 // --- Helpers ---
 #let section(title) = {
-  v(0.5em)
+  v(0.2em)
   text(size: 12pt, weight: "bold", title)
   v(-0.35em)
   line(length: 100%, stroke: 0.9pt + rgb("#1a1a1a"))
-  v(0.3em)
+  v(0.15em)
 }
 
 #let entry(date, body) = {
@@ -78,7 +78,7 @@
 // regardless of whether the cell has a subtitle.
 // Skill cell — fixed height so every row in the skills grid has consistent
 // vertical rhythm regardless of whether the cell has a subtitle.
-#let skill(name, sub: none) = block(height: 2.4em, spacing: 0pt)[
+#let skill(name, sub: none) = block(height: 2.3em, spacing: 0pt)[
   #text(weight: "bold", name)
   #if sub != none [
     \ #text(size: 9pt, fill: rgb("#555555"), sub)
@@ -116,7 +116,7 @@
 #entry("05/2022 – 05/2025")[
   #role("Senior Software Engineer", "Finch", url: "https://tryfinch.com/")
   #v(0.4em)
-  At Finch, I built a unified payroll API (think Plaid, for payroll) with a few key projects being:
+  Built a unified payroll API (think Plaid, for payroll) with a few key projects being:
   - Genericizing our job-running framework to handle new product scopes
   - Onboarding a net-new benefits product onto our distributed job runner
   - Leading job-runner migrations from monolith → ECS, ECS → EKS
@@ -129,6 +129,8 @@
     "Miltenyi Biotech",
     url: "https://www.miltenyibiotec.com/US-en/?countryRedirected=1",
   )
+  #v(0.4em)
+  Built and administered custom lab information system for experiment and instrument tracking & automated data analysis for in-house genome sequencers
 ]
 
 // --- Education ---
@@ -168,11 +170,18 @@
   columns: (1fr, 1fr),
   column-gutter: 1em,
   row-gutter: 0em,
-  skill("JavaScript / TypeScript"), skill("Python"),
-  skill("SQL / NoSQL"), skill("Golang"),
-  skill("Rust"),
 
-  skill("Leadership", sub: "Mentoring, pair programming"),
+  skill(
+    "Programming",
+    sub: "JavaScript / TypeScript, Python, SQL / NoSQL, Golang, Rust, F#",
+  ),
+
+  skill("Leadership", sub: "Mentoring, pair programming, project ownership"),
+
+  skill(
+    "Distributed Systems",
+    sub: "Temporal, event-based systems, HTC engines",
+  ),
 
   skill(
     "DevOps & Development Tools",
@@ -182,11 +191,6 @@
   skill("Cloud Platforms", sub: "AWS, GCP, Azure"),
   skill(
     "Data Science + ML",
-    sub: "Constructing eval sets, prompt iteration, etc",
-  ),
-
-  skill(
-    "Distributed Systems",
-    sub: "Temporal, event-based systems, HTC engines",
+    sub: "Managing data sets, system evaluation",
   ),
 )

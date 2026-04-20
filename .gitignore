@@ -5,3 +5,4 @@ static/pdf/resume.pdf
 content/resume.pdf
 docs/*.pdf
 .task/*
+.direnv

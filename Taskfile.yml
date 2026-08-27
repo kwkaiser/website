@@ -26,17 +26,27 @@ tasks:
       - rm -rf public
       - hugo
 
-  build-docker:
-    desc: Package the built site into the nginx image published by CI.
+  build-image:
+    desc: Build the site container image into .task/image.tar. No docker daemon required.
     deps: [build]
+    vars:
+      IMAGE_NAME: '{{.IMAGE_NAME | default "git.kwkaiser.io/kwkaiser/website"}}'
+      IMAGE_TAG: '{{.IMAGE_TAG | default "dev"}}'
     sources:
-      - Dockerfile
+      - nix/image.nix
+      - flake.nix
+      - flake.lock
       - public/**/*
     generates:
-      - .task/build-docker.iid
+      - .task/image.tar
     cmds:
       - mkdir -p .task
-      - docker build -t kwkaiser/website --iidfile .task/build-docker.iid .
+      - |
+        stream=$(SITE_DIR="$PWD/public" \
+          IMAGE_NAME="{{.IMAGE_NAME}}" \
+          IMAGE_TAG="{{.IMAGE_TAG}}" \
+          nix build --impure --no-link --print-out-paths .#image)
+        "$stream" > .task/image.tar
 
   deploy:
     deps: [build]

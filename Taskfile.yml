@@ -57,7 +57,7 @@ tasks:
         : "${REGISTRY_TOKEN:?REGISTRY_TOKEN is not set}"
         for tag in {{.IMAGE_TAGS}}; do
           echo "pushing {{.IMAGE_NAME}}:$tag"
-          skopeo copy \
+          skopeo --insecure-policy copy \
             --dest-tls-verify={{.TLS_VERIFY}} \
             --dest-creds "$REGISTRY_USER:$REGISTRY_TOKEN" \
             docker-archive:.task/image.tar \

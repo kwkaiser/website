@@ -45,6 +45,7 @@
             go
             git
             dart-sass
+            skopeo
 
             # Fonts (typst picks these up via TYPST_FONT_PATHS below)
             lato

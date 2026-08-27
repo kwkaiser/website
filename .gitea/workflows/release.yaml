@@ -39,22 +39,21 @@ jobs:
 
       - uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Build static site
-        run: nix develop --accept-flake-config --command task build-image
+      - name: Build image
+        env:
+          IMAGE: ${{ env.IMAGE }}
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: |
+          nix develop --accept-flake-config --command \
+            task build-image IMAGE_NAME="$IMAGE" IMAGE_TAG="$VERSION"
 
-      # - uses: docker/setup-buildx-action@v3
-
-      # - uses: docker/login-action@v3
-      #   with:
-      #     registry: ${{ env.REGISTRY }}
-      #     username: ${{ github.actor }}
-      #     password: ${{ secrets.REGISTRY_TOKEN }}
-
-      # - uses: docker/build-push-action@v5
-      #   with:
-      #     context: .
-      #     push: true
-      #     tags: |
-      #       ${{ env.IMAGE }}:${{ steps.meta.outputs.version }}
-      #       ${{ env.IMAGE }}:${{ steps.meta.outputs.sha }}
-      #       ${{ env.IMAGE }}:latest
+      - name: Push image
+        env:
+          IMAGE: ${{ env.IMAGE }}
+          VERSION: ${{ steps.meta.outputs.version }}
+          SHA: ${{ steps.meta.outputs.sha }}
+          REGISTRY_USER: ${{ github.actor }}
+          REGISTRY_TOKEN: ${{ secrets.K8S_GITEA_REGISTRY_PACKAGE_TOKEN }}
+        run: |
+          nix develop --accept-flake-config --command \
+            task push-image IMAGE_NAME="$IMAGE" IMAGE_TAGS="$VERSION $SHA latest"

@@ -32,13 +32,6 @@ tasks:
     vars:
       IMAGE_NAME: '{{.IMAGE_NAME | default "git.kwkaiser.io/kwkaiser/website"}}'
       IMAGE_TAG: '{{.IMAGE_TAG | default "dev"}}'
-    sources:
-      - nix/image.nix
-      - flake.nix
-      - flake.lock
-      - public/**/*
-    generates:
-      - .task/image.tar
     cmds:
       - mkdir -p .task
       - |
@@ -47,3 +40,26 @@ tasks:
           IMAGE_TAG="{{.IMAGE_TAG}}" \
           nix build --impure --no-link --print-out-paths .#image)
         "$stream" > .task/image.tar
+
+  push-image:
+    desc: Push .task/image.tar to the container registry. Needs REGISTRY_USER and REGISTRY_TOKEN.
+    vars:
+      IMAGE_NAME: '{{.IMAGE_NAME | default "git.kwkaiser.io/kwkaiser/website"}}'
+      IMAGE_TAGS: '{{.IMAGE_TAGS | default "dev"}}'
+      TLS_VERIFY: '{{.TLS_VERIFY | default "true"}}'
+    preconditions:
+      - sh: test -f .task/image.tar
+        msg: '.task/image.tar not found - run `task build-image` first'
+    cmds:
+      - |
+        set -eu
+        : "${REGISTRY_USER:?REGISTRY_USER is not set}"
+        : "${REGISTRY_TOKEN:?REGISTRY_TOKEN is not set}"
+        for tag in {{.IMAGE_TAGS}}; do
+          echo "pushing {{.IMAGE_NAME}}:$tag"
+          skopeo copy \
+            --dest-tls-verify={{.TLS_VERIFY}} \
+            --dest-creds "$REGISTRY_USER:$REGISTRY_TOKEN" \
+            docker-archive:.task/image.tar \
+            "docker://{{.IMAGE_NAME}}:$tag"
+        done

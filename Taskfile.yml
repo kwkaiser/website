@@ -26,21 +26,12 @@ tasks:
       - rm -rf public
       - hugo
 
-  # NOTE: docker-compose.yaml uses linuxserver/swag and mounts ./public directly
-  # as the webroot, so the image we build here is not actually consumed by the
-  # deploy. Kept around for ad-hoc use or future migration.
   build-docker:
-    desc: Build the standalone Docker image (not used by deploy).
-    deps: [build-resume]
+    desc: Package the built site into the nginx image published by CI.
+    deps: [build]
     sources:
       - Dockerfile
-      - hugo.toml
-      - go.mod
-      - go.sum
-      - content/**/*
-      - static/**/*
-      - layouts/**/*
-      - archetypes/**/*
+      - public/**/*
     generates:
       - .task/build-docker.iid
     cmds:

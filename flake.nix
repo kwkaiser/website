@@ -18,6 +18,8 @@
             typst
             hugo
             go-task
+            go
+            git
 
             # Fonts (typst picks these up via TYPST_FONT_PATHS below)
             lato

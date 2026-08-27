@@ -9,7 +9,7 @@
 
 let
   nginxConf = writeText "nginx.conf" ''
-    user nobody nogroup;
+    user nobody nobody;
     worker_processes auto;
     error_log /dev/stderr warn;
     pid /tmp/nginx.pid;

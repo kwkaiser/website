@@ -47,14 +47,3 @@ tasks:
           IMAGE_TAG="{{.IMAGE_TAG}}" \
           nix build --impure --no-link --print-out-paths .#image)
         "$stream" > .task/image.tar
-
-  deploy:
-    deps: [build]
-    cmds:
-      - docker-compose up -d
-
-  redeploy:
-    deps: [build]
-    cmds:
-      - docker-compose down
-      - docker-compose up -d

@@ -27,7 +27,7 @@ tasks:
       - hugo
 
   build-image:
-    desc: Build the site container image into .task/image.tar. No docker daemon required.
+    desc: Build the site container image into .task/image.tar. On macOS the nix build runs in a container.
     deps: [build]
     vars:
       IMAGE_NAME: '{{.IMAGE_NAME | default "git.kwkaiser.io/kwkaiser/website"}}'
@@ -35,11 +35,39 @@ tasks:
     cmds:
       - mkdir -p .task
       - |
-        stream=$(SITE_DIR="$PWD/public" \
-          IMAGE_NAME="{{.IMAGE_NAME}}" \
-          IMAGE_TAG="{{.IMAGE_TAG}}" \
-          nix build --impure --no-link --print-out-paths .#image)
-        "$stream" > .task/image.tar
+        set -eu
+        export IMAGE_NAME="{{.IMAGE_NAME}}"
+        export IMAGE_TAG="{{.IMAGE_TAG}}"
+        if [ "$(uname -s)" = "Darwin" ]; then
+          docker run --rm \
+            -v "$PWD":/workspace \
+            -v website-nix-store:/nix \
+            -w /workspace \
+            -e SITE_DIR=/workspace/public \
+            -e IMAGE_NAME \
+            -e IMAGE_TAG \
+            nixos/nix:latest \
+            sh -c 'stream=$(nix --extra-experimental-features "nix-command flakes" \
+                     build --impure --no-link --print-out-paths .#image) \
+                   && "$stream" > /workspace/.task/image.tar'
+        else
+          export SITE_DIR="$PWD/public"
+          stream=$(nix build --impure --no-link --print-out-paths .#image)
+          "$stream" > .task/image.tar
+        fi
+
+  run-image:
+    desc: Load .task/image.tar into docker and serve it on PORT (default 8080).
+    vars:
+      IMAGE_NAME: '{{.IMAGE_NAME | default "git.kwkaiser.io/kwkaiser/website"}}'
+      IMAGE_TAG: '{{.IMAGE_TAG | default "dev"}}'
+      PORT: '{{.PORT | default "8080"}}'
+    preconditions:
+      - sh: test -f .task/image.tar
+        msg: '.task/image.tar not found - run `task build-image-linux` first'
+    cmds:
+      - docker load -i .task/image.tar
+      - docker run --rm -p {{.PORT}}:80 --name website-test {{.IMAGE_NAME}}:{{.IMAGE_TAG}}
 
   push-image:
     desc: Push .task/image.tar to the container registry. Needs REGISTRY_USER and REGISTRY_TOKEN.

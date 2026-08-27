@@ -20,6 +20,7 @@
             go-task
             go
             git
+            dart-sass
 
             # Fonts (typst picks these up via TYPST_FONT_PATHS below)
             lato
